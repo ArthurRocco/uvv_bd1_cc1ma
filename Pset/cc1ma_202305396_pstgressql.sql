@@ -63,7 +63,7 @@ CREATE TABLE lojas.lojas (
 );
 
 --Explicar o que ha na tabela "loja" por meio de um comentario
-COMMENT ON TABLE lojas.lojas IS 'Informações sobre cada loja da franquia de lojas uvv.';
+COMMENT ON TABLE lojas.lojas IS 'Contem informações sobre a loja.';
 
 --Explicar o que ha nas colunas da tabela "loja" por meio de um comentario
 COMMENT ON COLUMN lojas.lojas.loja_id IS 'Identifica cada loja da franquia por um único número.';
@@ -115,10 +115,10 @@ CREATE TABLE lojas.produtos (
 );
 
 -- Comentar sobre as informacoes contidas na tabela
-COMMENT ON TABLE lojas.produtos IS 'Mostra informações dos produtos da loja.';
+COMMENT ON TABLE lojas.produtos IS 'Contem informações sobre os pedidos.';
 
 --Comentar sobre as colunas da tabela "produto", explicando as suas colunas
-COMMENT ON COLUMN lojas.produtos.produto_id IS 'Seleciona os identificadores separado de cada tipo de produto..';
+COMMENT ON COLUMN lojas.produtos.produto_id IS 'Seleciona os identificadores separado de cada tipo de produto.';
 COMMENT ON COLUMN lojas.produtos.nome IS 'Mostra o nome do produto.';
 COMMENT ON COLUMN lojas.produtos.preco_unitario IS 'Mostra o preço unitário.';
 COMMENT ON COLUMN lojas.produtos.detalhes IS 'Mostra detalhes do produto.';
@@ -151,7 +151,7 @@ CREATE TABLE lojas.clientes (
 );
 
 --Comentar o que tem na tabela "clientes"
-COMMENT ON TABLE lojas.clientes IS 'Mostra informações sobre os clientes.';
+COMMENT ON TABLE lojas.clientes IS 'Contem informações sobre os clientes.';
 
 --Adicionar um comentario explicando o que tem nas colunas da tabela "clientes"
 COMMENT ON COLUMN lojas.clientes.cliente_id IS 'MMostra o id dos clientes.';
@@ -193,7 +193,7 @@ CREATE TABLE lojas.estoques (
 );
 
 --Explicar o que ha na tabela "estoques" por meio de um comentario
-COMMENT ON TABLE lojas.estoques IS 'Mostra informações sobre estoque das lojas.';
+COMMENT ON TABLE lojas.estoques IS 'Contem informações sobre o estoque.';
 
 --Explicar os tipos de informacoes de cada coluna da tabela "estoques" por meio de um comentario
 COMMENT ON COLUMN lojas.estoques.estoque_id IS 'Mostra o id dos produtos no estoque.';
@@ -237,7 +237,7 @@ CREATE TABLE lojas.envios (
 );
 
 --Exibir o que ha na tabela "envios" por meio de um comentario
-COMMENT ON TABLE lojas.envios IS 'Mostra informações sobre os envios da lojas.';
+COMMENT ON TABLE lojas.envios IS 'Contem informações sobre os envios.';
 
 --Explicar quais os tipos de informacoes de cada coluna da tabela "envios" por meio de comentarios
 COMMENT ON COLUMN lojas.envios.envio_id IS 'Mostra o id de cada envio.';
@@ -288,14 +288,14 @@ ALTER TABLE lojas.pedidos
 ADD CONSTRAINT check_data_hora_format CHECK (TO_CHAR(data_hora, 'DD-MM-YYYY') = TO_CHAR(data_hora, 'DD-MM-YYYY'));
 
 --Explicar o que ha na tabela "pedidos" por meio de um comentario 
-COMMENT ON TABLE lojas.pedidos IS 'Mostra informações sobre os pedidos feitas em cada loja.';
+COMMENT ON TABLE lojas.pedidos IS 'Contem informações sobre os pedidos.';
 
 --Explicar o que ha em cada coluna na tabela "pedidos" por meio de um comentario 
-COMMENT ON COLUMN lojas.pedidos.pedido_id IS 'Mostra o identificador único de cada pedido feito na loja.';
-COMMENT ON COLUMN lojas.pedidos.data_hora IS 'Identifica em que dia e hora o clientes fez o pedido do produto.';
-COMMENT ON COLUMN lojas.pedidos.status IS 'Mostra se o produto está no estado de produção, envios ou se já foi entregue ao cliente.';
+COMMENT ON COLUMN lojas.pedidos.pedido_id IS 'Mostra o id de cada pedido.';
+COMMENT ON COLUMN lojas.pedidos.data_hora IS 'Identifica a data e hora da que o pedido foi feito.';
+COMMENT ON COLUMN lojas.pedidos.status IS 'Mostra o status do pedido.';
 COMMENT ON COLUMN lojas.pedidos.cliente_id IS 'Mostra o identificador único de cada cliente.';
-COMMENT ON COLUMN lojas.pedidos.loja_id IS 'Identifica cada loja da franquia por um número único.';
+COMMENT ON COLUMN lojas.pedidos.loja_id IS 'Identifica as lojas por meio da id.';
 
 --Relacionar as tabelas "clientes" e "pedidos", no qual a tabela "clientes" é a pai e a filha é a tabela "pedidos"
 ALTER TABLE lojas.pedidos ADD CONSTRAINT clientes_pedidos_fk
@@ -328,15 +328,15 @@ CREATE TABLE lojas.pedidos_itens (
 );
 
 --Explicar as informacoes da tabela por meio de um comentario 
-COMMENT ON TABLE lojas.pedidos_itens IS 'Mostra quais produtos foram requistidos por cada ordem de pedido.';
+COMMENT ON TABLE lojas.pedidos_itens IS 'Contem informações sobre os pedidos.';
 
 --Explicar as informacoes de cada coluna da tabela por meio de comentarios
-COMMENT ON COLUMN lojas.pedidos_itens.produto_id IS 'Identifica o identificador exclusivo de cada tipo de produto.';
-COMMENT ON COLUMN lojas.pedidos_itens.pedido_id IS 'Mostra o identificador único de cada pedido feito na loja.';
-COMMENT ON COLUMN lojas.pedidos_itens.numero_da_linha IS 'Mostra qual o número de linha específico do produto da loja UVV que o cliente pediu.';
-COMMENT ON COLUMN lojas.pedidos_itens.preco_unitario IS 'Mostra o preço pago pelo cliente ao comprar cada unidade dos produtos na ordem';
-COMMENT ON COLUMN lojas.pedidos_itens.quantidade IS 'Mostra a quantidade de unidades pedida pelo cliente em sua ordem';
-COMMENT ON COLUMN lojas.pedidos_itens.envio_id IS 'Mostra o identificador único de cada envios';
+COMMENT ON COLUMN lojas.pedidos_itens.produto_id IS 'Identifica o produto pela id do mesmo.';
+COMMENT ON COLUMN lojas.pedidos_itens.pedido_id IS 'Identifica o pedido pela id do mesmo.';
+COMMENT ON COLUMN lojas.pedidos_itens.numero_da_linha IS 'Mostra a linha que o pedido se encontra dentro do sistema.';
+COMMENT ON COLUMN lojas.pedidos_itens.preco_unitario IS 'Mostra em ordem o preço dos produtos do cliente';
+COMMENT ON COLUMN lojas.pedidos_itens.quantidade IS 'Mostra em ordem a quantidade de itens que o cliente pediu.';
+COMMENT ON COLUMN lojas.pedidos_itens.envio_id IS 'Mostra o id de cada envio.';
 
 --Restringir a nao ter/aceitar valores negativos na coluna "preco_unitario"
 ALTER TABLE lojas.pedidos_itens
