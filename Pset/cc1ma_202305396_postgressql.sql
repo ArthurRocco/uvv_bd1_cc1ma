@@ -28,7 +28,7 @@ CONNECTION LIMIT =      -1;
 COMMENT ON DATABASE uvv IS 'Banco de dados para tratar de informações sobre a loja UVV e suas franquias';
 
 --Trocar de usuario (para poder mecher no BD corretamente)
-\c uvv arthur_rocco;
+\c "host=localhost dbname=uvv user=arthur_rocco password=arthur@rocco";
 
 --Criar schema lojas, cujo sera utilizado separadamente por "arthur_rocco"
 CREATE SCHEMA  lojas 
