@@ -1,4 +1,4 @@
-# (Problam set 1) PSET1 
+# (Problem set 1) PSET1 
 
 Trabalho realizado por **Arthur Rocco** na disciplina de Design e **Desenvolvimento de Banco de Dados I.**
 - **Professor: Abrantes**
